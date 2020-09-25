@@ -1,5 +1,5 @@
 var selectedBoard = undefined;
-var DEFAULT_SCROLL_SHIFT = 1000000;
+var DEFAULT_SCROLL_SHIFT = 1_000_000_000;
 
 function buildAddCardComponent(column) {
     return `
@@ -125,16 +125,10 @@ function renderSelectedBoard() {
     }
 }
 
-function scrollDownColumn(columnId) {
-    document
-        .getElementById(columnId)
-        .children[1].scrollTo(0, DEFAULT_SCROLL_SHIFT);
-}
-
 function scrollRightSelectedBoard() {
     document
         .getElementById(selectedBoard)
-        .children[1].scrollTo(DEFAULT_SCROLL_SHIFT, 0);
+        .children[1].scrollBy(DEFAULT_SCROLL_SHIFT, 0);
 }
 
 renderSelectedBoard();

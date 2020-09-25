@@ -460,6 +460,8 @@ function createNewCard(columnId) {
 
     saveCardsData();
     saveCardColumnRelations();
+
+    return newCardId;
 }
 
 function createNewColumn() {

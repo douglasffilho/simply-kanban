@@ -179,7 +179,7 @@ function addColumn() {
 }
 
 function addCard(columnId) {
-    createNewCard(columnId);
+    var cardId = createNewCard(columnId);
     renderSelectedBoard();
-    scrollDownColumn(columnId);
+    document.getElementById(cardId).children[1].focus();
 }
