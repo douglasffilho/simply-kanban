@@ -1,0 +1,29 @@
+{
+  "name": "simply-kanban",
+  "version": "1.0.0",
+  "description": "A simply kanban app",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/douglasffilho/simply-kanban.git"
+  },
+  "keywords": [
+    "simply",
+    "kanban",
+    "app",
+    "drag",
+    "and",
+    "drop",
+    "backolg",
+    "todo",
+    "list",
+    "wip",
+    "done"
+  ],
+  "author": "Douglas Filho",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/douglasffilho/simply-kanban/issues"
+  },
+  "homepage": "https://github.com/douglasffilho/simply-kanban#readme"
+}
