@@ -1,5 +1,10 @@
-var COLUMN_DELETION_TEXT = 'Really want to delete this column?';
-var CARD_DELETION_TEXT = 'Really want to delete this card?';
+function deletionMessage(obj) {
+    return `Really want to delete this ${obj}?`
+}
+
+var COLUMN_DELETION_TEXT = deletionMessage`column`;
+var CARD_DELETION_TEXT = deletionMessage`card`;
+var BOARD_DELETION_TEXT = deletionMessage`board`;
 
 var fromColumn = undefined;
 var fromCard = undefined;
@@ -156,6 +161,17 @@ function deleteColumn(columnId) {
     if (shouldDelete) {
         deleteColumnById(columnId);
         renderSelectedBoard();
+    }
+    return shouldDelete;
+}
+
+function deleteBoard(boardId) {
+    var shouldDelete = confirm(BOARD_DELETION_TEXT);
+    if (shouldDelete) {
+        deleteBoardById(boardId);
+        window.location.hash = '';
+        renderSelectedBoard();
+        renderNavBar();
     }
     return shouldDelete;
 }

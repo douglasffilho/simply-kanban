@@ -381,6 +381,20 @@ function _deleteColumnDataByColumnId(columnId) {
     columnsData = columnsData.filter((rel) => !!rel);
 }
 
+function _deleteBoardDataByBoardId(boardId) {
+    var data = _findBoardById(boardId);
+    var dataIndex = boardsData.indexOf(data);
+    boardsData[dataIndex] = null;
+    boardsData = boardsData.filter((rel) => !!rel);
+}
+
+function _deleteBoardRelationsByBoardId(boardId) {
+    var columns = findBoardColumnsByBoardId(boardId);
+    columns.forEach((column) => {
+        deleteColumnById(column.id);
+    });
+}
+
 function deleteCardById(cardId) {
     _deleteCardColumnRelationByCardId(cardId);
     _deleteCardDataByCardId(cardId);
@@ -400,6 +414,13 @@ function deleteColumnById(columnId) {
     _deleteColumnDataByColumnId(columnId);
 
     _deleteCardsByColumnId(columnId);
+
+    saveAllData();
+}
+
+function deleteBoardById(boardId) {
+    _deleteBoardDataByBoardId(boardId);
+    _deleteBoardRelationsByBoardId(boardId);
 
     saveAllData();
 }

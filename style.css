@@ -116,7 +116,21 @@ a:hover {
     padding: 1rem;
 }
 
-.board>div>p {
+.board-header {
+    display: flex;
+    margin-left: 1rem;
+}
+
+.board-header>p {
+    margin-top: 0.6rem !important;
+}
+
+.board-header>p,
+.board-header>div {
+    margin-right: 1rem;
+}
+
+.board header {
     font-size: 2rem;
     margin-bottom: 1.1rem;
 }
@@ -205,6 +219,7 @@ a:hover {
 }
 
 .board-delete,
+.column-delete,
 .card-delete {
     color: red;
     font-size: 2rem;
@@ -220,7 +235,7 @@ a:hover {
     cursor: pointer;
 }
 
-.board-delete {
+.column-delete {
     margin: 0rem;
     margin-left: 0.5rem;
 }

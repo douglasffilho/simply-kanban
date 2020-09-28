@@ -61,7 +61,7 @@ function buildColumnComponent(column) {
             ondragover="allowDrop(event)"
             ondrop="drop(event)"
         >
-            <p class="board-delete" onclick="deleteColumn('${id}')"> - </p>
+            <p class="column-delete" onclick="deleteColumn('${id}')"> - </p>
             <div
                 class="editable"
                 contentEditable="true"
@@ -90,13 +90,16 @@ function buildBoardComponent(board) {
 
     return `
         <div class="board" id="${id}">
-            <div
-                class="editable"
-                contentEditable="true"
-                onfocusin="selectText(event)"
-                onfocusout="updateBoardTitle(event)"
-            >
-                <p>${title}</p>
+        <div class="board-header">
+                <p class="board-delete" onclick="deleteBoard('${id}')"> - </p>
+                <div
+                    class="editable"
+                    contentEditable="true"
+                    onfocusin="selectText(event)"
+                    onfocusout="updateBoardTitle(event)"
+                >
+                    <header>${title}</header>
+                </div>
             </div>
             ${buildColumnsComponent(columns)}
         </div>
