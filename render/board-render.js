@@ -1,4 +1,3 @@
-var selectedBoard = undefined;
 var DEFAULT_SCROLL_SHIFT = 1_000_000_000;
 
 function buildAddCardComponent(column) {
@@ -49,8 +48,7 @@ function buildAddColumnComponent() {
 }
 
 function buildColumnComponent(column) {
-    var { id, title } = column;
-    var cards = findColumnCardsByColumnId(id);
+    var { id, title, cards } = column;
 
     return `
         <div
@@ -85,8 +83,7 @@ function buildColumnsComponent(columns) {
 }
 
 function buildBoardComponent(board) {
-    var { id, title } = board;
-    var columns = findBoardColumnsByBoardId(id);
+    var { id, title, columns } = board;
 
     return `
         <div class="board" id="${id}">
@@ -106,26 +103,10 @@ function buildBoardComponent(board) {
     `;
 }
 
-function renderBoard(boardId) {
-    var board = findBoardById(boardId);
+function renderBoard(board) {
     var boardComponent = buildBoardComponent(board);
     var main = document.getElementsByTagName('main')[0];
     main.innerHTML = boardComponent;
-}
-
-function renderSelectedBoard() {
-    var boardId = window.location.hash;
-
-    if (!boardId && (boardsData || []).length > 0) {
-        boardId = boardsData[0].id;
-        window.location.hash = `#${boardId}`;
-    }
-    boardId = boardId.replace('#', '');
-
-    if (boardId) {
-        renderBoard(boardId);
-        selectedBoard = boardId;
-    }
 }
 
 function scrollRightSelectedBoard() {
@@ -133,5 +114,3 @@ function scrollRightSelectedBoard() {
         .getElementById(selectedBoard)
         .children[1].scrollBy(DEFAULT_SCROLL_SHIFT, 0);
 }
-
-renderSelectedBoard();

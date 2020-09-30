@@ -1,5 +1,7 @@
+var selectedBoard = undefined;
+
 function deletionMessage(obj) {
-    return `Really want to delete this ${obj}?`
+    return `Really want to delete this ${obj}?`;
 }
 
 var COLUMN_DELETION_TEXT = deletionMessage`column`;
@@ -9,19 +11,36 @@ var BOARD_DELETION_TEXT = deletionMessage`board`;
 var fromColumn = undefined;
 var fromCard = undefined;
 
-function isColumn(id) {
+function _isColumn(id) {
     return id.indexOf('card') < 0;
+}
+
+function _getElementIdFromTree(event, elementClass) {
+    return (
+        event.path.filter(
+            (element) =>
+                element.classList && element.classList.contains(elementClass)
+        )[0] || {}
+    ).id;
+}
+
+function _getParentColumn(event) {
+    return _getElementIdFromTree(event, 'board-column');
+}
+
+function _getParentCard(event) {
+    return _getElementIdFromTree(event, 'card');
 }
 
 function drag(event) {
     event.stopPropagation();
 
     var id = event.target.id;
-    if (isColumn(id)) {
+    if (_isColumn(id)) {
         fromColumn = id;
         fromCard = undefined;
     } else {
-        fromColumn = getParentColumn(event);
+        fromColumn = _getParentColumn(event);
         fromCard = id;
     }
 }
@@ -30,8 +49,8 @@ function allowDrop(event) {
     event.preventDefault();
 }
 
-function moveColumn(destColumn) {
-    updateColumnPosition(fromColumn, destColumn);
+function moveColumn(toColumn) {
+    updateColumnPosition(fromColumn, toColumn);
     renderSelectedBoard();
 }
 
@@ -45,33 +64,16 @@ function drop(event) {
     event.stopPropagation();
 
     if (fromColumn) {
-        var toColumn = getParentColumn(event);
+        var toColumn = _getParentColumn(event);
         if (toColumn) {
             if (fromCard) {
-                var toCard = getParentCard(event);
+                var toCard = _getParentCard(event);
                 moveCard(toColumn, toCard);
             } else {
                 moveColumn(toColumn);
             }
         }
     }
-}
-
-function getParentColumn(event) {
-    return _getElementIdFromTree(event, 'board-column');
-}
-
-function getParentCard(event) {
-    return _getElementIdFromTree(event, 'card');
-}
-
-function _getElementIdFromTree(event, elementClass) {
-    return (
-        event.path.filter(
-            (element) =>
-                element.classList && element.classList.contains(elementClass)
-        )[0] || {}
-    ).id;
 }
 
 function selectText(event) {
@@ -97,8 +99,8 @@ function updateColumn(columnId, title) {
 
 function updateBoard(boardId, title) {
     updateBoardTitleById(boardId, title);
-    renderSelectedBoard();
     renderNavBar();
+    renderSelectedBoard();
 }
 
 function cardEdit(event, cardId) {
@@ -150,7 +152,7 @@ function updateBoardTitle(event) {
 function deleteCard(cardId) {
     var shouldDelete = confirm(CARD_DELETION_TEXT);
     if (shouldDelete) {
-        deleteCardById(cardId);
+        deleteCardByCardId(cardId);
         renderSelectedBoard();
     }
     return shouldDelete;
@@ -159,7 +161,7 @@ function deleteCard(cardId) {
 function deleteColumn(columnId) {
     var shouldDelete = confirm(COLUMN_DELETION_TEXT);
     if (shouldDelete) {
-        deleteColumnById(columnId);
+        deleteColumnByColumnId(columnId);
         renderSelectedBoard();
     }
     return shouldDelete;
@@ -168,10 +170,12 @@ function deleteColumn(columnId) {
 function deleteBoard(boardId) {
     var shouldDelete = confirm(BOARD_DELETION_TEXT);
     if (shouldDelete) {
-        deleteBoardById(boardId);
+        deleteBoardByBoardId(boardId);
+
         window.location.hash = '';
-        renderSelectedBoard();
+
         renderNavBar();
+        renderSelectedBoard();
     }
     return shouldDelete;
 }
@@ -183,19 +187,28 @@ function deleteOnEmptyOrReturnPreviousContent(cardId, previousContent) {
 
 function addBoard() {
     var boardId = createNewBoard();
+
     window.location.hash = boardId;
-    renderSelectedBoard();
+
     renderNavBar();
+    renderSelectedBoard();
 }
 
 function addColumn() {
-    createNewColumn();
+    createNewColumnOnBoard(selectedBoard);
+
     renderSelectedBoard();
     scrollRightSelectedBoard();
 }
 
 function addCard(columnId) {
-    var cardId = createNewCard(columnId);
+    var cardId = createNewCardOnColumn(columnId);
+
     renderSelectedBoard();
+
     document.getElementById(cardId).children[1].focus();
 }
+
+readAllData();
+renderNavBar();
+renderSelectedBoard();

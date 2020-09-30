@@ -18,5 +18,3 @@ function renderNavBar() {
     var nav = document.getElementsByTagName('nav')[0];
     nav.innerHTML = buildNavBar();
 }
-
-renderNavBar();
