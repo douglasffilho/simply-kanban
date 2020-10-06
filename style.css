@@ -185,17 +185,17 @@ a:hover {
     line-height: 75vh;
 }
 
-.board-cards {
+.column-cards {
     overflow-y: scroll;
     height: calc(100% - 1.2rem);
 }
 
-.board-cards :first-child {
+.column-cards :first-child {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
 }
 
-.board-cards :last-child {
+.column-cards :last-child {
     border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
 }
