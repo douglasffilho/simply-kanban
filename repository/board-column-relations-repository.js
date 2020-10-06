@@ -111,3 +111,8 @@ function updateBoardColumnRelationsByColumnId(
 
     return boardColumnRelations;
 }
+
+function restoreBoardColumnRelations(data) {
+    _persistData('boardColumnRelations', data);
+    boardColumnRelations = _readPersistedData('boardColumnRelations', boardColumnRelations);
+}

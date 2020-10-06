@@ -12,6 +12,22 @@ function readAllData() {
     );
 }
 
+function restoreBackup() {
+    var {
+        boardsData,
+        columnsData,
+        cardsData,
+        boardColumnRelations,
+        columnCardRelations
+    } = getExternalSavedData();
+
+    restoreBoardsData(boardsData);
+    restoreColumnsData(columnsData);
+    restoreCardsData(cardsData);
+    restoreBoardColumnRelations(boardColumnRelations);
+    restoreColumnCardRelations(columnCardRelations);
+}
+
 function renderSelectedBoard() {
     var boardId = window.location.hash;
 

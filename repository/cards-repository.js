@@ -68,3 +68,8 @@ function updateCardById(cardId, updateFieldName, updateFieldValue) {
 
     return cardsData;
 }
+
+function restoreCardsData(data) {
+    _persistData('cardsData', data);
+    cardsData = _readPersistedData('cardsData', cardsData);
+}
