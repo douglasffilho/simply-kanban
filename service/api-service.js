@@ -28,6 +28,20 @@ function restoreBackup() {
     restoreColumnCardRelations(columnCardRelations);
 }
 
+function backupData() {
+    var data = {
+        boardsData: getAllBoardsData(),
+        cardsData: getAllCardsData(),
+        columnsData: getAllColumnsData(),
+        boardColumnRelations: getAllBoardColumnRelations(),
+        columnCardRelations: getAllColumnCardRelations()
+    };
+
+    var content = _serialize(data);
+
+    download('backup.json', content);
+}
+
 function renderSelectedBoard() {
     var boardId = window.location.hash;
 

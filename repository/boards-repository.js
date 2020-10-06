@@ -50,3 +50,7 @@ function restoreBoardsData(data) {
     _persistData('boardsData', data);
     boardsData = _readPersistedData('boardsData', boardsData);
 }
+
+function getAllBoardsData() {
+    return _readPersistedData('boardsData', boardsData);
+}

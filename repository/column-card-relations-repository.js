@@ -131,3 +131,7 @@ function restoreColumnCardRelations(data) {
     _persistData('columnCardRelations', data);
     columnCardRelations = _readPersistedData('columnCardRelations', columnCardRelations);
 }
+
+function getAllColumnCardRelations() {
+    return _readPersistedData('columnCardRelations', columnCardRelations);
+}

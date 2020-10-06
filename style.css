@@ -239,3 +239,14 @@ a:hover {
     margin: 0rem;
     margin-left: 0.5rem;
 }
+
+.backup-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: block;
+    background: transparent;
+    padding: 0.5rem;
+    color: var(--soft-font-color);
+    cursor: pointer;
+}
