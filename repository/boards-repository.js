@@ -12,7 +12,7 @@ var boardsData = [
 ];
 
 function saveBoard(newBoard) {
-    var { newRepo, newItem } = _save(boardsData, newBoard, true);
+    var { newRepo, newItem } = _save(boardsData, newBoard, true, 'board');
 
     boardsData = newRepo;
 
