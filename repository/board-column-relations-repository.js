@@ -112,3 +112,12 @@ function updateBoardColumnRelationsByColumnId(
 
     return boardColumnRelations;
 }
+
+function restoreBoardColumnRelations(data) {
+    _persistData('boardColumnRelations', data);
+    boardColumnRelations = _readPersistedData('boardColumnRelations', boardColumnRelations);
+}
+
+function getAllBoardColumnRelations() {
+    return _readPersistedData('boardColumnRelations', boardColumnRelations);
+}

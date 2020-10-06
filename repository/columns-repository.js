@@ -53,3 +53,12 @@ function updateColumnById(columnId, updateFieldName, updateFieldValue) {
 
     return columnsData;
 }
+
+function restoreColumnsData(data) {
+    _persistData('columnsData', data);
+    columnsData = _readPersistedData('columnsData', columnsData);
+}
+
+function getAllColumnsData() {
+    return _readPersistedData('columnsData', columnsData);
+}

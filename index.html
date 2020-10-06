@@ -18,12 +18,17 @@
             <main>
                 <!-- Content of boards is appended here -->
             </main>
+            <button class="backup-button" onclick="backupData()">Backup</button>
+            <button class="upload-button" onclick="restoreBackup()">Restore</button>
         </div>
 
         <script src="render/nav-render.js"></script>
         <script src="render/board-render.js"></script>
 
+        <script src="util/serialization-util.js"></script>
         <script src="util/repository-util.js"></script>
+        <script src="util/file-util.js"></script>
+
         <script src="repository/base-repository.js"></script>
         <script src="repository/boards-repository.js"></script>
         <script src="repository/columns-repository.js"></script>
