@@ -43,7 +43,8 @@ function saveColumnCardRelation(newColumnCardRelation) {
     var { newRepo, newItem } = _save(
         columnCardRelations,
         newColumnCardRelation,
-        false
+        false,
+        ''
     );
 
     columnCardRelations = newRepo.sort(_sortByRelationPosition);

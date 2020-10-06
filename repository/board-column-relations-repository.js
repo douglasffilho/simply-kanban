@@ -28,7 +28,8 @@ function saveBoardColumnRelation(newBoardColumnRelation) {
     var { newRepo, newItem } = _save(
         boardColumnRelations,
         newBoardColumnRelation,
-        false
+        false,
+        ''
     );
 
     boardColumnRelations = newRepo.sort(_sortByRelationPosition);

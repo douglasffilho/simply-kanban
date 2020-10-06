@@ -33,8 +33,8 @@ function _persistData(repositoryName, repository) {
     localStorage.setItem(repositoryName, serializedData);
 }
 
-function _save(repository, item, mustCreateId) {
-    if (mustCreateId) item.id = _createUUID();
+function _save(repository, item, mustCreateId, idPrefix) {
+    if (mustCreateId) item.id = `${idPrefix}-${_createUUID()}`;
 
     var newRepo = _copyObject(repository);
     newRepo.push(item);
