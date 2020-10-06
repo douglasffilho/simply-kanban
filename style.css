@@ -240,6 +240,7 @@ a:hover {
     margin-left: 0.5rem;
 }
 
+.upload-button,
 .backup-button {
     position: absolute;
     top: 1rem;
@@ -249,4 +250,8 @@ a:hover {
     padding: 0.5rem;
     color: var(--soft-font-color);
     cursor: pointer;
+}
+
+.upload-button {
+    right: 5rem
 }

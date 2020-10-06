@@ -13,19 +13,29 @@ function readAllData() {
 }
 
 function restoreBackup() {
-    var {
-        boardsData,
-        columnsData,
-        cardsData,
-        boardColumnRelations,
-        columnCardRelations
-    } = getExternalSavedData();
+    uploadData(function (data) {
+        if (_dataIsInvalid(data)) {
+            alert('Data is broken');
+            return;
+        }
 
-    restoreBoardsData(boardsData);
-    restoreColumnsData(columnsData);
-    restoreCardsData(cardsData);
-    restoreBoardColumnRelations(boardColumnRelations);
-    restoreColumnCardRelations(columnCardRelations);
+        var {
+            boardsData,
+            columnsData,
+            cardsData,
+            boardColumnRelations,
+            columnCardRelations
+        } = data;
+
+        restoreBoardsData(boardsData);
+        restoreColumnsData(columnsData);
+        restoreCardsData(cardsData);
+        restoreBoardColumnRelations(boardColumnRelations);
+        restoreColumnCardRelations(columnCardRelations);
+
+        window.location.hash = '';
+        renderSelectedBoard();
+    });
 }
 
 function backupData() {
@@ -56,4 +66,16 @@ function renderSelectedBoard() {
         renderBoard(board);
         selectedBoard = boardId;
     }
+}
+
+function _dataIsInvalid(data) {
+    return (
+        !data ||
+        !data.boardsData ||
+        data.boardsData.length < 1 ||
+        !data.cardsData ||
+        data.cardsData.length < 1 ||
+        !data.columnsData ||
+        data.columnsData.length < 1
+    );
 }
