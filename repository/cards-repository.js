@@ -35,7 +35,7 @@ var cardsData = [
 ];
 
 function saveCard(newCard) {
-    var { newRepo, newItem } = _save(cardsData, newCard, true);
+    var { newRepo, newItem } = _save(cardsData, newCard, true, 'card');
 
     cardsData = newRepo;
 

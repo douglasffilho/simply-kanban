@@ -20,7 +20,7 @@ var columnsData = [
 ];
 
 function saveColumn(newColumn) {
-    var { newRepo, newItem } = _save(columnsData, newColumn, true);
+    var { newRepo, newItem } = _save(columnsData, newColumn, true, 'column');
 
     columnsData = newRepo;
 

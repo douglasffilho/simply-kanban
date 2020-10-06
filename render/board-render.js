@@ -32,7 +32,7 @@ function buildCardComponent(card) {
 
 function buildCardsComponent(column, cards) {
     return `
-        <div class="board-cards">
+        <div class="column-cards">
             ${(cards || []).map((card) => buildCardComponent(card)).join('\n')}
             ${buildAddCardComponent(column)}
         </div>
