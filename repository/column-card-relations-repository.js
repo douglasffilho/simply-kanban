@@ -37,8 +37,17 @@ var columnCardRelations = [
 ];
 
 function saveColumnCardRelation(newColumnCardRelation) {
-    newColumnCardRelation.position =
-        newColumnCardRelation.position - POSITION_FACTOR;
+    var relations = findColumnCardRelationsByColumnId(
+        newColumnCardRelation.columnId
+    );
+
+    var positions = relations.map(function (relation) {
+        return relation.position;
+    });
+
+    var lastRelationsPosition = Math.max(...positions);
+
+    newColumnCardRelation.position = lastRelationsPosition + 1;
 
     var { newRepo, newItem } = _save(
         columnCardRelations,
@@ -130,7 +139,10 @@ function updateColumnCardRelationsByCardId(
 
 function restoreColumnCardRelations(data) {
     _persistData('columnCardRelations', data);
-    columnCardRelations = _readPersistedData('columnCardRelations', columnCardRelations);
+    columnCardRelations = _readPersistedData(
+        'columnCardRelations',
+        columnCardRelations
+    );
 }
 
 function getAllColumnCardRelations() {

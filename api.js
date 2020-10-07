@@ -77,6 +77,9 @@ function drop(event) {
 }
 
 function selectText(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     var element = event.target;
 
     var range = document.createRange();

@@ -66,6 +66,7 @@ function renderSelectedBoard() {
         renderBoard(board);
         selectedBoard = boardId;
     }
+    appendEvents();
 }
 
 function _dataIsInvalid(data) {

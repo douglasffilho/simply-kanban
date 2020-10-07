@@ -22,8 +22,16 @@ var boardColumnRelations = [
 ];
 
 function saveBoardColumnRelation(newBoardColumnRelation) {
-    newBoardColumnRelation.position =
-        newBoardColumnRelation.position - POSITION_FACTOR;
+    var relations = findBoardColumnRelationsByBoardId(
+        newBoardColumnRelation.boardId
+    );
+
+    var positions = relations.map(function (relation) {
+        return relation.position;
+    });
+    var lastRelationsPosition = Math.max(...positions);
+
+    newBoardColumnRelation.position = lastRelationsPosition + 1;
 
     var { newRepo, newItem } = _save(
         boardColumnRelations,
@@ -115,7 +123,10 @@ function updateBoardColumnRelationsByColumnId(
 
 function restoreBoardColumnRelations(data) {
     _persistData('boardColumnRelations', data);
-    boardColumnRelations = _readPersistedData('boardColumnRelations', boardColumnRelations);
+    boardColumnRelations = _readPersistedData(
+        'boardColumnRelations',
+        boardColumnRelations
+    );
 }
 
 function getAllBoardColumnRelations() {

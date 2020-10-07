@@ -2,7 +2,7 @@ var DEFAULT_SCROLL_SHIFT = 1_000_000_000;
 
 function buildAddCardComponent(column) {
     return `
-        <div class="add card" onclick="addCard('${column.id}')">
+        <div class="add-card" data-column-id="${column.id}">
             <p>+</p>
         </div>
     `;
@@ -14,16 +14,11 @@ function buildCardComponent(card) {
         <div
             class="card"
             id="${id}"
-            draggable="true"
-            ondragstart="drag(event)"
-            ondragover="allowDrop(event)"
-            ondrop="drop(event)">
-            <p class="card-delete" onclick="deleteCard('${id}')"> - </p>
+            draggable="true">
+            <p class="card-delete"> - </p>
             <div
                 class="editable"
-                contentEditable="true"
-                onfocusin="selectText(event)"
-                onfocusout="cardEdit(event, '${id}')">
+                contentEditable="true">
                 ${text}
             </div>
         </div>
@@ -41,7 +36,7 @@ function buildCardsComponent(column, cards) {
 
 function buildAddColumnComponent() {
     return `
-        <div class="add-board-column" onclick="addColumn()">
+        <div class="add-board-column">
             <p>+</p>
         </div>
     `;
@@ -55,16 +50,11 @@ function buildColumnComponent(column) {
             class="board-column"
             id="${id}"
             draggable="true"
-            ondragstart="drag(event)"
-            ondragover="allowDrop(event)"
-            ondrop="drop(event)"
         >
-            <p class="column-delete" onclick="deleteColumn('${id}')"> - </p>
+            <p class="column-delete"> - </p>
             <div
                 class="editable"
                 contentEditable="true"
-                onfocusin="selectText(event)"
-                onfocusout="updateColumnTitle(event, '${id}')"
             >
                 <p>${title}</p>
             </div>
@@ -87,13 +77,11 @@ function buildBoardComponent(board) {
 
     return `
         <div class="board" id="${id}">
-        <div class="board-header">
+        <div class="board-header" id="${id}">
                 <p class="board-delete" onclick="deleteBoard('${id}')"> - </p>
                 <div
                     class="editable"
                     contentEditable="true"
-                    onfocusin="selectText(event)"
-                    onfocusout="updateBoardTitle(event)"
                 >
                     <header>${title}</header>
                 </div>

@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+    "name": "Simply Kanban",
+    "description": "A simple kanban extension that helps you focus from new tab",
+    "version": "1.0",
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "permissions": [
+        "tabs",
+        "storage"
+    ]
+}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap');
+
 :root {
     --background-color: #002b36;
     --card-background-color: #073642;
@@ -33,7 +35,8 @@ body {
     height: 100%;
     width: 100%;
     background-color: var(--background-color);
-    font-family: 'Roboto', 'Times New Roman', Times, serif;
+    font-family: 'Roboto', 'Times New Roman', Times;
+    font-size: 1rem;
     color: var(--font-color);
     display: block;
 }
@@ -121,12 +124,12 @@ a:hover {
     margin-left: 1rem;
 }
 
-.board-header>p {
+.board-header > p {
     margin-top: 0.6rem !important;
 }
 
-.board-header>p,
-.board-header>div {
+.board-header > p,
+.board-header > div {
     margin-right: 1rem;
 }
 
@@ -212,10 +215,16 @@ a:hover {
     user-select: none;
 }
 
-.add.card {
+.add-card {
     cursor: pointer;
     font-size: 1.5rem;
     padding: 0rem 1rem;
+    border: solid 0.02rem var(--font-color);
+    border-top-left-radius: 0.2rem !important;
+    border-top-right-radius: 0.2rem !important;
+    box-shadow: 3px 3px 5px var(--darker-color);
+    user-select: none;
+    margin: 1rem;
 }
 
 .board-delete,
@@ -240,8 +249,8 @@ a:hover {
     margin-left: 0.5rem;
 }
 
-.upload-button,
-.backup-button {
+#restore-button,
+#backup-button {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -252,6 +261,6 @@ a:hover {
     cursor: pointer;
 }
 
-.upload-button {
-    right: 5rem
+#restore-button {
+    right: 5rem;
 }

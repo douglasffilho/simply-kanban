@@ -4,10 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap"
-            rel="stylesheet"
-        />
         <title>Simply Kanban</title>
     </head>
     <body>
@@ -18,8 +14,8 @@
             <main>
                 <!-- Content of boards is appended here -->
             </main>
-            <button class="backup-button" onclick="backupData()">Backup</button>
-            <button class="upload-button" onclick="restoreBackup()">Restore</button>
+            <button id="backup-button">Backup</button>
+            <button id="restore-button">Restore</button>
         </div>
 
         <script src="render/nav-render.js"></script>
@@ -43,6 +39,10 @@
 
         <script src="api.js"></script>
 
-        <script src="events.js"></script>
+        <script src="event/backup-events.js"></script>
+        <script src="event/cards-events.js"></script>
+        <script src="event/column-events.js"></script>
+        <script src="event/board-events.js"></script>
+        <script src="event/events.js"></script>
     </body>
 </html>
