@@ -17,7 +17,9 @@ function _appendCardsEvents() {
 
         card.addEventListener('dragstart', drag);
         card.addEventListener('dragover', allowDrop);
+        card.addEventListener('dragend', dragend);
         card.addEventListener('drop', drop);
+
         Array.from(card.children).forEach(function (child) {
             if (child.className === 'card-delete') {
                 child.addEventListener('click', function () {

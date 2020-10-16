@@ -1,5 +1,3 @@
-var POSITION_FACTOR = 0.01;
-
 function _createUUID() {
     var dt = new Date().getTime();
     return 'xxxxxxx-xxxyxxx-xxxxxxx'.replace(/[xy]/g, function (c) {
