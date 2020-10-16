@@ -88,6 +88,19 @@ function dragend(event) {
 
 function allowDrop(event) {
     event.preventDefault();
+    event.stopPropagation();
+
+    var toCard = _getParentCard(event);
+    if (toCard) {
+        var deliveryYPosition = _getMouseYPosition(event);
+        var destCardScreenYPosition = _getCardYPosition(toCard);
+
+        // if (deliveryYPosition <= destCardScreenYPosition) {
+        //     console.log(`render box above card ${toCard}`);
+        // } else {
+        //     console.log(`render box below card ${toCard}`);
+        // }
+    }
 }
 
 function moveColumn(toColumn) {
@@ -97,7 +110,7 @@ function moveColumn(toColumn) {
 
 function moveCard(destColumn, destCard, event) {
     var deliveryYPosition = _getMouseYPosition(event);
-    var destCardScreenYPosition = _getCardYPosition(destCard);
+    var destCardScreenYPosition = destCard ? _getCardYPosition(destCard) : 0;
     updateCardColumnAndPosition(
         fromCard,
         destColumn,
