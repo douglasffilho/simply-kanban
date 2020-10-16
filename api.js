@@ -32,6 +32,27 @@ function _getParentCard(event) {
     return _getElementIdFromTree(event, 'card');
 }
 
+function _removeDraggingElement() {
+    var ghost = document.getElementById('ghost');
+    document.body.removeChild(ghost);
+}
+
+function _setDraggingElement(event) {
+    var element = event.target;
+
+    var ghost = element.cloneNode(true);
+    ghost.id = 'ghost';
+    ghost.style.maxWidth = '10rem';
+    ghost.children[0].style.display = 'none';
+    ghost.classList.add('face');
+
+    document.body.appendChild(ghost);
+
+    event.dataTransfer.setDragImage(ghost, 20, 20);
+
+    element.classList.add('dragging');
+}
+
 function drag(event) {
     event.stopPropagation();
 
@@ -42,7 +63,16 @@ function drag(event) {
     } else {
         fromColumn = _getParentColumn(event);
         fromCard = id;
+
+        _setDraggingElement(event);
     }
+}
+
+function dragend(event) {
+    event.stopPropagation();
+
+    event.target.classList.remove('dragging');
+    _removeDraggingElement();
 }
 
 function allowDrop(event) {
@@ -74,6 +104,7 @@ function drop(event) {
             }
         }
     }
+    _removeDraggingElement();
 }
 
 function selectText(event) {
