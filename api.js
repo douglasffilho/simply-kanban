@@ -34,7 +34,7 @@ function _getParentCard(event) {
 
 function _removeDraggingElement() {
     var ghost = document.getElementById('ghost');
-    document.body.removeChild(ghost);
+    if (ghost) document.body.removeChild(ghost);
 }
 
 function _setDraggingElement(event) {
@@ -51,6 +51,17 @@ function _setDraggingElement(event) {
     event.dataTransfer.setDragImage(ghost, 20, 20);
 
     element.classList.add('dragging');
+}
+
+function _getMouseYPosition(event) {
+    return event.pageY;
+}
+
+function _getCardYPosition(cardId) {
+    var element = document.getElementById(cardId);
+    var position = element.getBoundingClientRect();
+    var height = element.clientHeight;
+    return position.y + height / 2;
 }
 
 function drag(event) {
@@ -84,8 +95,16 @@ function moveColumn(toColumn) {
     renderSelectedBoard();
 }
 
-function moveCard(destColumn, destCard) {
-    updateCardColumnAndPosition(fromCard, destColumn, destCard);
+function moveCard(destColumn, destCard, event) {
+    var deliveryYPosition = _getMouseYPosition(event);
+    var destCardScreenYPosition = _getCardYPosition(destCard);
+    updateCardColumnAndPosition(
+        fromCard,
+        destColumn,
+        destCard,
+        deliveryYPosition,
+        destCardScreenYPosition
+    );
     renderSelectedBoard();
 }
 
@@ -98,7 +117,7 @@ function drop(event) {
         if (toColumn) {
             if (fromCard) {
                 var toCard = _getParentCard(event);
-                moveCard(toColumn, toCard);
+                moveCard(toColumn, toCard, event);
             } else {
                 moveColumn(toColumn);
             }

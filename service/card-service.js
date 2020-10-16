@@ -1,11 +1,20 @@
 var DEFAULT_NEW_CARD_TEXT = 'New Card';
 
-function updateCardColumnAndPosition(originCardId, destColumnId, destCardId) {
+function updateCardColumnAndPosition(
+    originCardId,
+    destColumnId,
+    destCardId,
+    deliveryScreenPosition,
+    destCardScreenPosition
+    ) {
     var destColumnCardRelation = findColumnCardRelationsByCardId(destCardId)[0];
 
     var newPosition = destColumnCardRelation
         ? destColumnCardRelation.position
         : 1;
+    if (deliveryScreenPosition <= destCardScreenPosition)
+        newPosition -= POSITION_FACTOR;
+    else
     newPosition += POSITION_FACTOR;
 
     updateColumnCardRelationsByCardId(originCardId, 'columnId', destColumnId);
