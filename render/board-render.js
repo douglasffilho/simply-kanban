@@ -78,7 +78,7 @@ function buildBoardComponent(board) {
     return `
         <div class="board" id="${id}">
         <div class="board-header" id="${id}">
-                <p class="board-delete" onclick="deleteBoard('${id}')"> - </p>
+                <p class="board-delete"> - </p>
                 <div
                     class="editable"
                     contentEditable="true"

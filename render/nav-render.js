@@ -9,7 +9,7 @@ function buildNavBar() {
         <p class="nav-header">Boards</p>
         <ul class="nav-boards">
             ${boards.map(buildNavItem).join('\n')}
-            <li onclick="addBoard()"><a href="javascript:void(0)">+</a></li>
+            <li id="add-board"><p>+</p></li>
         </ul>
     `;
 }

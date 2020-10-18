@@ -1,4 +1,9 @@
-function appendBoardEvents() {
+function _appendNavBarBoardEvents() {
+    var addBoardButton = document.querySelector('#add-board');
+    addBoardButton.addEventListener('click', addBoard);
+}
+
+function _appendBoardEvents() {
     var board = document.querySelector('.board-header');
     var { id } = board;
     var children = Array.from(board.children);
@@ -12,4 +17,9 @@ function appendBoardEvents() {
             child.addEventListener('focusout', updateBoardTitle);
         }
     });
+}
+
+function appendBoardEvents() {
+    _appendNavBarBoardEvents();
+    _appendBoardEvents();
 }

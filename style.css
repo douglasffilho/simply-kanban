@@ -107,6 +107,11 @@ a:hover {
     padding: 0.5rem 0rem;
     border-bottom: solid 0.01rem var(--soft-font-color);
     border-bottom-left-radius: 1rem;
+    cursor: pointer;
+}
+
+.nav-boards li:hover {
+    color: var(--font-color);
 }
 
 .nav-boards li:last-child {
