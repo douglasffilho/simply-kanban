@@ -21,10 +21,11 @@ function updateCardColumnAndPosition(
     )
         newPosition += 1;
 
-    var currentPosition = findColumnCardRelationsByCardId(originCardId)[0]
-        .position;
+    var originRelation = findColumnCardRelationsByCardId(originCardId)[0];
+    var currentPosition = originRelation.position;
+    var currentColumnId = originRelation.columnId;
 
-    if (newPosition === currentPosition) return;
+    if (destColumnId === currentColumnId && newPosition === currentPosition) return;
 
     var relations = findColumnCardRelationsByColumnId(destColumnId).sort(
         _sortByRelationPosition
@@ -52,6 +53,8 @@ function updateCardColumnAndPosition(
 
     updateColumnCardRelationsByCardId(originCardId, 'columnId', destColumnId);
     updateColumnCardRelationsByCardId(originCardId, 'position', newPosition);
+    rebaseColumnCardPositions(destColumnId);
+    rebaseColumnCardPositions(currentColumnId);
 }
 
 function updateCardTextById(cardId, text) {

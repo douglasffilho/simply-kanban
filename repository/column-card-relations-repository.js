@@ -137,6 +137,21 @@ function updateColumnCardRelationsByCardId(
     return columnCardRelations;
 }
 
+function rebaseColumnCardPositions(columnId) {
+    relations = _findAllByField(columnCardRelations, 'columnId', columnId);
+
+    relations = relations.sort(_sortByRelationPosition);
+    relations.forEach(function (relation, index) {
+        relation.position = index + 1;
+
+        updateColumnCardRelationsByCardId(
+            relation.cardId,
+            'position',
+            relation.position
+        );
+    });
+}
+
 function restoreColumnCardRelations(data) {
     _persistData('columnCardRelations', data);
     columnCardRelations = _readPersistedData(

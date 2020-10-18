@@ -1,3 +1,5 @@
+var shouldAppendEvents = false;
+
 function readAllData() {
     boardsData = _readPersistedData('boardsData', boardsData);
     columnsData = _readPersistedData('columnsData', columnsData);
@@ -66,7 +68,7 @@ function renderSelectedBoard() {
         renderBoard(board);
         selectedBoard = boardId;
     }
-    appendEvents();
+    if (shouldAppendEvents) appendEvents();
 }
 
 function _dataIsInvalid(data) {

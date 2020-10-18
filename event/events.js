@@ -21,3 +21,5 @@ window.onchange = appendEvents;
 document.onchange = appendEvents;
 document.body.onchange = appendEvents;
 document.onload = appendEvents;
+
+shouldAppendEvents = true;
